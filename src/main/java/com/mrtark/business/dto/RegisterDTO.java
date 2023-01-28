@@ -1,14 +1,12 @@
 package com.mrtark.business.dto;
 
+import com.mrtark.annotation.RegisterUniqueEmail;
+import lombok.*;
+import lombok.extern.log4j.Log4j2;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 import java.util.Date;
 @Data
@@ -25,7 +23,7 @@ public class RegisterDTO {
     @NotNull(message = "{register.email.validation.constraints.NotNull.message}")
     @Email(message = "{register.email.validation.constraints.property.message}")
     @Size(max = 150,message = "{register.email.validation.constraints.max.message}")
-    //@RegisterUniqueEmail
+    @RegisterUniqueEmail
     private String email;
     @NotNull(message = "{register.telephone.validation.constraints.NotNull.message}")
     @Pattern(regexp = "",message = "{register.telephone.validation.constraints.pattern.regex.message}")
