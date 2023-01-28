@@ -6,7 +6,7 @@ import org.springframework.data.domain.AuditorAware;
 @Configuration
 public class AuditorAwareBean {
     @Bean
-    public AuditorAware<String> auditorAwareMethod(){
+    public AuditorAware<String> auditorAwareBeanMethod(){
         return new AuditorAwareImpl();
     }
 }
