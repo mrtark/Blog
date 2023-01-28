@@ -1,11 +1,11 @@
 package com.mrtark.data.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
-
+import org.hibernate.annotations.Entity;
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 @Data
 @AllArgsConstructor
