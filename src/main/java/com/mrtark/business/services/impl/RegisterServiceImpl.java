@@ -10,11 +10,9 @@ import com.mrtark.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -36,6 +34,7 @@ public class RegisterServiceImpl implements IRegisterService {
     }
 
     @Override
+    @Transactional
     public RegisterDTO registerCreate(RegisterDTO registerDTO) {
         registerDTO.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(registerDTO.getPassword()));
         RegisterEntity registerEntity = IRegisterRepository.save(DtoToEntity(registerDTO));
@@ -63,12 +62,32 @@ public class RegisterServiceImpl implements IRegisterService {
     }
 
     @Override
+    @Transactional
     public RegisterDTO registerUpdate(Long id, RegisterDTO registerDTO) {
+        RegisterDTO dto = registerFind(id);
+        if (dto!=null){
+            dto.setUsername(registerDTO.getUsername());
+            dto.setSurname(registerDTO.getSurname());
+            dto.setEmail(registerDTO.getEmail());
+            dto.setTelephone(registerDTO.getTelephone());
+            dto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(registerDTO.getPassword()));
+            RegisterEntity entity = IRegisterRepository.save(DtoToEntity(dto));
+            IRegisterRepository.save(entity);
+            dto.setId(entity.getId());
+            return dto;
+        }
         return null;
     }
 
     @Override
+    @Transactional
     public Map<String, Boolean> registerDelete(Long id) {
-        return null;
+        RegisterDTO dto = registerFind(id);
+        Map<String,Boolean> registerDelete = new LinkedHashMap<>();
+        if (dto!=null){
+            IRegisterRepository.delete(DtoToEntity(dto));
+            registerDelete.put(dto + ": Data Deleted.",Boolean.TRUE);
+        }
+        return registerDelete;
     }
 }
