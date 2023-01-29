@@ -6,6 +6,7 @@ import com.mrtark.business.dto.RegisterDTO;
 import com.mrtark.business.services.IRegisterService;
 import com.mrtark.data.entity.RegisterEntity;
 import com.mrtark.data.repository.IRegisterRepository;
+import com.mrtark.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -54,7 +56,10 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public RegisterDTO registerFind(Long id) {
-        return null;
+        RegisterEntity findById = IRegisterRepository.findById(id).orElseThrow(
+                ()->new ResourceNotFoundException(id + ": Id Not Found!"));
+        RegisterDTO dto = EntityToDto(findById);
+        return dto;
     }
 
     @Override
