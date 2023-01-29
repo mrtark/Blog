@@ -3604,3 +3604,18 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'da
 2023-01-29 03:12:32.825  INFO 25948 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-01-29 03:12:32.828  INFO 25948 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-01-29 03:12:32.829  INFO 25948 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-29 14:04:28.847 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+2023-01-29 14:04:28.847 DEBUG 8936 --- [SpringApplicationShutdownHook] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2a6bcb9b, started on Sun Jan 29 15:19:53 IST 2023
+2023-01-29 14:04:28.848 DEBUG 8936 --- [SpringApplicationShutdownHook] ySourcesPropertyResolver$DefaultResolver : Found key 'spring.liveBeansView.mbeanDomain' in PropertySource 'systemProperties' with value of type String
+2023-01-29 14:04:28.850 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2023-01-29 14:04:28.852 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'webServerGracefulShutdown' completed its stop procedure
+2023-01-29 14:04:28.852 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483646
+2023-01-29 14:04:28.868 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'webServerStartStop' completed its stop procedure
+2023-01-29 14:04:28.868 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483647
+2023-01-29 14:04:28.868 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'springBootLoggingLifecycle' completed its stop procedure
+2023-01-29 14:04:28.870 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2023-01-29 14:04:28.870 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2023-01-29 14:04:28.870 DEBUG 8936 --- [SpringApplicationShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-01-29 14:04:28.871  INFO 8936 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-29 14:04:28.875  INFO 8936 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-29 14:04:28.876  INFO 8936 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
