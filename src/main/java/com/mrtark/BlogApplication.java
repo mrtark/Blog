@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 //        //org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration.class
 //}
 //)
-//@EnableJpaAuditing(auditorAwareRef = "auditorAwareBeanMethod")
+@EnableJpaAuditing(auditorAwareRef = "auditorAwareMethod")
 @EntityScan(basePackages = "com.mrtark.data.entity")
 public class BlogApplication {
     @PostConstruct
