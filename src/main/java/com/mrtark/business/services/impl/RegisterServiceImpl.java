@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,13 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public List<RegisterDTO> registerList() {
-        return null;
+        List<RegisterDTO> registerDTOList = new ArrayList<>();
+        List<RegisterEntity> registerEntityList = IRegisterRepository.findAll();
+        for (RegisterEntity go : registerEntityList) {
+            RegisterDTO dto = EntityToDto(go);
+            registerDTOList.add(dto);
+        }
+        return registerDTOList;
     }
 
     @Override
