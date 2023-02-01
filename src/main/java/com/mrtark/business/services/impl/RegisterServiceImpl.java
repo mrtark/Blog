@@ -18,7 +18,7 @@ import java.util.*;
 @Log4j2
 @Service
 public class RegisterServiceImpl implements IRegisterService {
-    private final IRegisterRepository IRegisterRepository;
+    private final IRegisterRepository iRegisterRepository;
     private final ModelMapperBean modelMapperBean;
     private final PasswordEncoderBean passwordEncoderBean;
     @Override
@@ -37,7 +37,7 @@ public class RegisterServiceImpl implements IRegisterService {
     @Transactional
     public RegisterDTO registerCreate(RegisterDTO registerDTO) {
         registerDTO.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(registerDTO.getPassword()));
-        RegisterEntity registerEntity = IRegisterRepository.save(DtoToEntity(registerDTO));
+        RegisterEntity registerEntity = iRegisterRepository.save(DtoToEntity(registerDTO));
         registerDTO.setId(registerEntity.getId());
         return registerDTO;
     }
@@ -45,7 +45,7 @@ public class RegisterServiceImpl implements IRegisterService {
     @Override
     public List<RegisterDTO> registerList() {
         List<RegisterDTO> registerDTOList = new ArrayList<>();
-        List<RegisterEntity> registerEntityList = IRegisterRepository.findAll();
+        List<RegisterEntity> registerEntityList = iRegisterRepository.findAll();
         for (RegisterEntity go : registerEntityList) {
             RegisterDTO dto = EntityToDto(go);
             registerDTOList.add(dto);
@@ -55,8 +55,8 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public RegisterDTO registerFind(Long id) {
-        RegisterEntity findById = IRegisterRepository.findById(id).orElseThrow(
-                ()->new ResourceNotFoundException(id + ": Id Not Found!"));
+        RegisterEntity findById = iRegisterRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException(id + ": ID Not Found!"));
         RegisterDTO dto = EntityToDto(findById);
         return dto;
     }
@@ -71,8 +71,8 @@ public class RegisterServiceImpl implements IRegisterService {
             dto.setEmail(registerDTO.getEmail());
             dto.setTelephone(registerDTO.getTelephone());
             dto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(registerDTO.getPassword()));
-            RegisterEntity entity = IRegisterRepository.save(DtoToEntity(dto));
-            IRegisterRepository.save(entity);
+            RegisterEntity entity = iRegisterRepository.save(DtoToEntity(dto));
+            iRegisterRepository.save(entity);
             dto.setId(entity.getId());
             return dto;
         }
@@ -85,7 +85,7 @@ public class RegisterServiceImpl implements IRegisterService {
         RegisterDTO dto = registerFind(id);
         Map<String,Boolean> registerDelete = new LinkedHashMap<>();
         if (dto!=null){
-            IRegisterRepository.delete(DtoToEntity(dto));
+            iRegisterRepository.delete(DtoToEntity(dto));
             registerDelete.put(dto + ": Data Deleted.",Boolean.TRUE);
         }
         return registerDelete;
