@@ -1,0 +1,11 @@
+
+version: '1.0'
+
+services:
+  app:
+    container_name: blogprjct1.jar
+    image: blogprjct1.jar
+    restart: always
+    build: ./
+    ports:
+      - "4444:4444"
